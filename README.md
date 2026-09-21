@@ -64,3 +64,5 @@ The office background is original AI-generated artwork. Camera scenes, foil scra
 ### Browser QA
 
 Optional UI checks use Playwright 1.62.1 and an installed Edge browser. Install Playwright in your development environment (or set `PLAYWRIGHT_MODULE` to an existing installation). Run `node scripts/serve.cjs` in one terminal, then `node tests/browser-check.cjs` and `node tests/browser-run.cjs` in another. The full-run test uses real game controls and accelerates only the clock. Set `GAME_URL` to test a deployed build and `BROWSER_CHANNEL` to select another installed Chromium browser. Reports go to ignored `tests/artifacts/`.
+
+After packaging, `node tests/desktop-check.cjs` verifies the portable EXE, renderer isolation, controls, fullscreen, and high-score persistence using an isolated QA profile. Set `FINAL_NOTICE_EXE` if the executable is outside the default artifacts folder. The optional `workflow-templates/game-checks.yml` can be installed as a GitHub Actions workflow by an account with workflow permission; it is a template, not an active CI workflow.

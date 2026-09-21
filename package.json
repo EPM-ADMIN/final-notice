@@ -13,7 +13,8 @@
     "package:windows": "node scripts/package-windows.cjs",
     "test:browser": "node tests/browser-check.cjs",
     "test:run": "node tests/browser-run.cjs",
-    "serve": "node scripts/serve.cjs"
+    "serve": "node scripts/serve.cjs",
+    "test:desktop": "node tests/desktop-check.cjs"
   },
   "engines": {
     "node": ">=22"
