@@ -1,0 +1,10 @@
+[
+  {
+    "version": "0.1.0",
+    "date": "2026-09-21",
+    "sha256": "7ff268a7d6a5df31c35845d1dc030dbb0ece469be4e1d76a81ae6b6bb77302ee",
+    "play": "versions/v0.1.0/",
+    "release": "https://github.com/EPM-ADMIN/final-notice/releases/tag/v0.1.0",
+    "windows": "https://github.com/EPM-ADMIN/final-notice/releases/download/v0.1.0/Final-Notice-0.1.0-Windows-x64.zip"
+  }
+]

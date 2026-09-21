@@ -1,0 +1,15 @@
+name: Game checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  game:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/engine.test.cjs
+      - run: node scripts/build.cjs
+      - run: git diff --exit-code -- docs/index.html

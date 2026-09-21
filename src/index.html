@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FINAL NOTICE — The Night Division</title>
+  <meta name="description" content="An original scratch-and-survive horror game. Follow the money. Mislead what follows you.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2310120f'/%3E%3Cpath d='M18 10h28v44H18z' fill='%23e9be73'/%3E%3Cpath d='M29 19h6v18h-6zm0 23h6v6h-6z' fill='%2310120f'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="room" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div>
+  <main id="game">
+    <header class="topbar">
+      <div class="wordmark"><span class="logo-mark">Ⅲ</span><div>FINAL NOTICE<small>THE NIGHT DIVISION</small></div></div>
+      <div class="shift-clock"><span id="shiftLabel">SHIFT 01 / 03</span><strong id="clock">12:00 <small>AM</small></strong><span id="remaining">90s until collection</span></div>
+      <nav class="settings" aria-label="Game settings"><button id="soundBtn" class="icon-button" aria-label="Toggle sound">SOUND ON</button><button id="helpBtn" class="icon-button" aria-label="Instructions">?</button><button id="pauseBtn" class="icon-button" aria-label="Pause game">Ⅱ</button></nav>
+    </header>
+
+    <section class="workspace" aria-label="Night shift workstation">
+      <aside class="surveillance">
+        <div class="section-label"><span>SURVEILLANCE</span><span class="live">● LIVE</span></div>
+        <button class="camera selected" id="lane0" aria-label="Listen to left corridor"><div class="camera-label"><span>01 / WEST HALL</span><span class="camera-selected">LISTENING</span></div><canvas id="cam0" width="420" height="250" aria-label="West hall camera"></canvas><div class="distance-row"><span id="status0">DISTANT</span><span id="threatText0">0%</span></div><div class="threat-track"><i id="threat0"></i></div></button>
+        <button class="camera" id="lane1" aria-label="Listen to right corridor"><div class="camera-label"><span>02 / EAST HALL</span><span class="camera-selected">LISTENING</span></div><canvas id="cam1" width="420" height="250" aria-label="East hall camera"></canvas><div class="distance-row"><span id="status1">DISTANT</span><span id="threatText1">0%</span></div><div class="threat-track"><i id="threat1"></i></div></button>
+        <p class="camera-tip">Your scratch travels through the selected hall. Switch to spread the danger.</p>
+        <div class="signal-panel"><div class="section-label"><span>ROOM NOISE</span><span id="noiseLabel">QUIET</span></div><canvas id="signal" width="440" height="80" aria-label="Noise waveform"></canvas></div>
+      </aside>
+
+      <section class="desk">
+        <div class="desk-heading"><span class="section-label">CLAIMS PROCESSING TERMINAL</span><span class="form-id" id="serial">FORM 008 — UNSEALED</span></div>
+        <div class="claim" id="claim">
+          <div class="claim-top"><div class="claim-brand">NIGHT<br><strong>CLAIM</strong></div><div class="claim-motto">EVERY MARK<br>LEAVES AN ECHO.</div><div class="claim-stamp">PAYABLE<br>TO BEARER</div></div>
+          <div class="claim-rule"><span>SCRATCH A CONNECTED ROUTE</span><span id="combo">×1.00</span></div>
+          <div class="board-wrap"><canvas id="board" width="610" height="400" tabindex="0" aria-label="Claim sheet, 5 columns and 4 rows. Drag through adjoining seals to scratch. Keyboard: arrow keys to select a seal, Enter to reveal."></canvas><div id="boardNote" class="board-note">PRESS & DRAG TO REVEAL</div></div>
+          <div class="claim-bottom"><span id="routeLength">00 SEALS LINKED</span><div class="barcode" aria-hidden="true"></div><span id="routeBonus">8 LINKS = BONUS</span></div>
+        </div>
+        <div class="feedback-line" id="feedback" role="status" aria-live="polite">Scratch any seal. Follow an adjoining seal to build your claim.</div>
+        <div class="route-status"><span>UNBANKED CLAIM</span><strong id="pot">$0<span>.00</span></strong><span id="potHint">Make a little noise.</span></div>
+        <div class="main-actions"><button id="cashBtn" class="bank-button" disabled><span>BANK CLAIM</span><small><kbd>F</kbd> KEEP THE MONEY</small></button><button id="quietBtn" class="quiet-button"><span>HOLD YOUR BREATH</span><small><kbd>SPACE</kbd> HOLD TO QUIETEN</small></button></div>
+        <div class="decoy-row"><button id="decoy0" disabled><span>↖</span> ECHO WEST <kbd>Q</kbd></button><span>BURN YOUR CLAIM<br>TO PUSH IT BACK · MIN $12</span><button id="decoy1" disabled>ECHO EAST <span>↗</span> <kbd>E</kbd></button></div>
+      </section>
+
+      <aside class="accounts">
+        <div class="invoice"><div class="invoice-meta"><span>COLLECTION NOTICE</span><span id="invoiceNumber">№ 001</span></div><h2>PAYMENT<br>DUE.</h2><div class="invoice-amount" id="bill">$180</div><div class="invoice-due">AT THE END OF THIS SHIFT</div><div class="invoice-line"></div><div class="account-line"><span>In your account</span><strong id="bank">$0</strong></div><div class="bill-track"><i id="billProgress"></i></div><div id="billStatus">$180 still to earn</div><p>Survive until collection.<br>Surplus carries over.</p><span id="paidStamp" class="paid-stamp">COVERED</span></div>
+        <div class="spool"><div class="section-label"><span>ECHO RECORDER</span><span id="echoReady">EMPTY</span></div><div class="tape" aria-hidden="true"><div class="reel">✣</div><div class="tape-window"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="reel">✣</div></div><p id="echoInfo">A $12 claim buys one distraction. Burn it into either hallway.</p></div>
+        <div class="perks"><span class="section-label">NIGHT-SHIFT BENEFITS</span><ul id="perkList"><li>No benefits. Naturally.</li></ul></div>
+      </aside>
+    </section>
+    <footer><span>DEPARTMENT OF UNSETTLED ACCOUNTS</span><span id="best">YOUR DEBT IS OUR BUSINESS.</span><span>ORIGINAL PLAYABLE PROTOTYPE / 0.1</span></footer>
+  </main>
+
+  <div id="overlay" class="overlay">
+    <section class="modal intro" id="introPanel" aria-label="Start game">
+      <div class="eyebrow">DEPARTMENT OF UNSETTLED ACCOUNTS</div><h1>FINAL<br><em>NOTICE.</em></h1><p class="intro-story">Three shifts. Three bills.<br>One thing listening.</p>
+      <div class="intro-rules"><p><b>01</b><span><strong>Scratch a path.</strong> Drag through adjoining seals. Longer routes pay more.</span></p><p><b>02</b><span><strong>Keep it. Or burn it.</strong> Bank your claim—or spend it on an echo to push the collector back.</span></p><p><b>03</b><span><strong>Make it to collection.</strong> Cover each bill and survive the full shift. Choose a benefit after payday.</span></p></div>
+      <div class="mode-picker" role="group" aria-label="Difficulty"><button class="active" data-mode="normal">STANDARD <small>90s / shift</small></button><button data-mode="relaxed">LENIENT <small>More time, less danger</small></button></div>
+      <button id="startBtn" class="start-button">CLOCK IN <span>↗</span></button><div class="intro-foot"><span>DRAG OR USE ARROWS + ENTER</span><span>HEADPHONES RECOMMENDED</span></div>
+    </section>
+    <section class="modal hidden" id="pausePanel" aria-label="Paused"><div class="eyebrow">THE CLOCK HAS STOPPED</div><h2 id="pauseTitle">TAKE A<br>BREATH.</h2><p>Drag through adjoining seals. <b>F</b> banks your claim. <b>Q / E</b> burn a claim worth $12 or more to repel the west / east collector.</p><p>Click a camera or press <b>A / D</b> to route your scratching. Hold <b>Space</b> to reduce room noise. Keep both hallways below 100%. Pay the bill when the timer runs out.</p><p><b>Arrow keys + Enter</b> also reveal seals. <b>Escape</b> pauses. Every shift lasts 90 seconds in Standard mode.</p><button id="resumeBtn" class="start-button">BACK TO WORK <span>↗</span></button></section>
+    <section class="modal wide hidden" id="upgradePanel" aria-label="Choose benefit"><div class="eyebrow">PAYMENT RECEIVED / STILL EMPLOYED</div><h2>YOU'VE EARNED<br><em>A BENEFIT.</em></h2><p id="upgradeSummary"></p><div id="upgradeChoices" class="upgrade-choices"></div></section>
+    <section class="modal hidden" id="endPanel" aria-label="Game result"><div id="endEyebrow" class="eyebrow">ACCOUNT CLOSED</div><h2 id="endTitle">COLLECTION<br>COMPLETE.</h2><p id="endReason"></p><div class="results"><div><span>CLAIMS BANKED</span><strong id="endEarned">$0</strong></div><div><span>ECHOES SENT</span><strong id="endDecoys">0</strong></div><div><span>LONGEST ROUTE</span><strong id="endCombo">0</strong></div></div><button id="restartBtn" class="start-button">ONE MORE SHIFT <span>↗</span></button></section>
+  </div>
+  <div id="dangerFlash" aria-hidden="true"></div>
+  <script src="engine.js"></script><script src="app.js"></script>
+</body></html>

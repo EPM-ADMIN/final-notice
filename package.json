@@ -1,0 +1,21 @@
+{
+  "name": "final-notice",
+  "productName": "Final Notice",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An original scratch-and-survive horror game.",
+  "author": "Endlesspixel Media",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "archive": "node scripts/build.cjs --archive",
+    "test": "node --test tests/engine.test.cjs",
+    "package:windows": "node scripts/package-windows.cjs",
+    "test:browser": "node tests/browser-check.cjs",
+    "test:run": "node tests/browser-run.cjs",
+    "serve": "node scripts/serve.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
